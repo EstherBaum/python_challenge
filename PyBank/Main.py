@@ -1,5 +1,7 @@
 import csv
 
+#create paths for input and output file
+
 file_to_load = "Resources/budget_data.csv"
 file_to_output = "Analysis/budget_analysis.txt"
 
@@ -9,6 +11,7 @@ greatest_inc = 0
 greatest_dec = 0
 ave_change = 0
 
+#open file path, store header, and grab important numbers from the January row
 
 with open(file_to_load) as nfile:
     file_content = csv.reader(nfile)
@@ -20,6 +23,9 @@ with open(file_to_load) as nfile:
     beg_profit = int(Jan_row[1])
     total_profit += int(Jan_row[1])
     previous_profit = int(Jan_row[1])
+
+    # Loop through rows to find the total months, total profit, monthly change. 
+    # Also keep track of the greatest monthly increase and greatest monthly decrease
 
     for row in file_content:
 
@@ -36,9 +42,9 @@ with open(file_to_load) as nfile:
         end_profit = int(row[1])
 
 total_change = (end_profit - beg_profit)/(total_month - 1)
-rounded_change = round(total_change, 2)
-print(rounded_change)
-print(total_month, total_profit, gi_date, greatest_inc, gd_date, greatest_dec)     
+rounded_change = round(total_change, 2)   
+
+#Print result to an f-string and output to text file
 
 output = f"""
 Financial Analysis

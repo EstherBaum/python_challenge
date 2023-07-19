@@ -1,5 +1,8 @@
 import csv
 
+# started the votes_one, votes_two, and votes_three as one because one vote for the candidates will 
+# not be counted in the code I wrote. 
+
 tot_votes = 0
 greatest_votes = 0
 candidates = []
@@ -7,15 +10,21 @@ votes_one = 1
 votes_two = 1
 votes_three = 1
 
+#create paths for input and output file
+
 file_to_output = "Analysis/election_data.txt"
 csvpath = "Resources/election_data.csv"
+
+#open path to file and store the header
 
 with open(csvpath) as csvreader:
     csvfile = csv.reader(csvreader)
 
     header = next(csvfile)
 
-#find all the different candidates
+# count the total votes. Keep track of each new candidate and add it to candidate list.
+# count the votes given for each of the candidates in the candidate list. If that candidate
+# has the greatest number of votes, reset the greatest_votes and label them "winner". 
 
     for row in csvfile:
         tot_votes += 1
@@ -37,12 +46,13 @@ with open(csvpath) as csvreader:
                 greatest_votes = votes_three
                 winner = candidates[2]
 
+# Calculate the percentage amounts based on the decimals. 
+
 one_perc = round(votes_one/tot_votes*100, 3)
 two_perc = round(votes_two/tot_votes*100, 3)
 three_perc = round(votes_three/tot_votes*100, 3)
 
-
-print(tot_votes, one_perc, votes_one, two_perc, votes_two, three_perc, votes_three, winner)
+# output an f-string to a text file. 
 
 output = f"""
 Election Results
