@@ -36,14 +36,16 @@ with open(file_to_load) as nfile:
         end_profit = int(row[1])
 
 total_change = (end_profit - beg_profit)/(total_month - 1)
-print(total_month, total_profit, gi_date, greatest_inc, gd_date, greatest_dec)       
+rounded_change = round(total_change, 2)
+print(rounded_change)
+print(total_month, total_profit, gi_date, greatest_inc, gd_date, greatest_dec)     
 
 output = f"""
 Financial Analysis
 ----------------------------
 Total Months: {total_month}
 Total: ${total_profit}
-Average Change: $-8311.11
+Average Change: ${rounded_change}
 Greatest Increase in Profits: {gi_date} (${greatest_inc})
 Greatest Decrease in Profits: {gd_date} (${greatest_dec})
 """
